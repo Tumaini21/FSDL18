@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignment Operators</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #4a90e2;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Styling for the result boxes */
+        .output {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect */
+        .output:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Different colors for different operations */
+        #output1 { background-color: #fce4ec; border-left: 5px solid #d81b60; }
+        #output2 { background-color: #e8f5e9; border-left: 5px solid #43a047; }
+        #output3 { background-color: #fff8e1; border-left: 5px solid #fbc02d; }
+        #output4 { background-color: #e3f2fd; border-left: 5px solid #1e88e5; }
+        #output5 { background-color: #f3e5f5; border-left: 5px solid #8e24aa; }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 30px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .output {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Assignment Operators</h1>
+    <p>Discover how assignment operators work in JavaScript through interactive examples.</p>
+    
+    <div class="output" id="output1"></div>
+    <div class="output" id="output2"></div>
+    <div class="output" id="output3"></div>
+    <div class="output" id="output4"></div>
+    <div class="output" id="output5"></div>
+
+    <script>
+        // Initial variables
+        let x = 5;
+        let y = 3;
+
+        // 1. Basic Assignment
+        x = 5;
+        document.getElementById("output1").innerHTML = `Basic Assignment: x = ${x}`;
+
+        // 2. Addition Assignment (+=)
+        x += y;  // x = x + y
+        document.getElementById("output2").innerHTML = `Addition Assignment (x += y): x = ${x}`;
+
+        // 3. Subtraction Assignment (-=)
+        x -= y;  // x = x - y
+        document.getElementById("output3").innerHTML = `Subtraction Assignment (x -= y): x = ${x}`;
+
+        // 4. Multiplication Assignment (*=)
+        x *= y;  // x = x * y
+        document.getElementById("output4").innerHTML = `Multiplication Assignment (x *= y): x = ${x}`;
+
+        // 5. Division Assignment (/=)
+        x /= y;  // x = x / y
+        document.getElementById("output5").innerHTML = `Division Assignment (x /= y): x = ${x}`;
+    </script>
+
+</body>
+</html>

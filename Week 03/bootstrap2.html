@@ -3,86 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basic Bootstrap Page</title>
+  <title>Plant Management System</title>
   <!-- Link to Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .jumbotron {
+      background-color: #d8f0d2;
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">My Website</a>
+      <a class="navbar-brand" href="#">Plant Management</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" href="#home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#plants">Plants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#add-plant">Add Plant</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#about">About</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Jumbotron (Hero Section) -->
-  <div class="jumbotron text-center bg-info text-white py-5">
-    <h1 class="display-4">Welcome to My Website!</h1>
-    <p class="lead">We are glad to have you here. Explore and enjoy our services!</p>
-    <!-- Learn More Button that opens a link -->
-    <a class="btn btn-primary btn-lg" href="https://www.example.com" role="button">Learn More</a>
-  </div>
+  <!-- Home Section -->
+  <section id="home" class="jumbotron text-center text-white py-5">
+    <div class="container">
+      <h1 class="display-4">Welcome to the Plant Management System</h1>
+      <p class="lead">Efficiently manage your plants, track their growth, and care requirements.</p>
+    </div>
+  </section>
 
-  <!-- Grid Layout -->
-  <div class="container mt-5">
+  <!-- Plants Section -->
+  <section id="plants" class="container mt-5">
+    <h2 class="text-center">Our Plants</h2>
     <div class="row">
+      <!-- Plant Card 1 -->
       <div class="col-md-4">
         <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+          <img src="https://via.placeholder.com/200" class="card-img-top" alt="Plant 1">
           <div class="card-body">
-            <h5 class="card-title">Card 1</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <!-- Go somewhere button that opens a new page -->
-            <a href="https://getbootstrap.com" class="btn btn-primary" target="_blank">Go somewhere</a>
+            <h5 class="card-title">Ficus</h5>
+            <p class="card-text">A beautiful indoor plant known for its glossy leaves. Needs bright, indirect sunlight.</p>
+            <a href="#" class="btn btn-success">View Details</a>
           </div>
         </div>
       </div>
+      <!-- Plant Card 2 -->
       <div class="col-md-4">
         <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+          <img src="https://via.placeholder.com/200" class="card-img-top" alt="Plant 2">
           <div class="card-body">
-            <h5 class="card-title">Card 2</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <!-- Go somewhere button that opens a new page -->
-            <a href="https://www.example.com" class="btn btn-primary" target="_blank">Go somewhere</a>
+            <h5 class="card-title">Aloe Vera</h5>
+            <p class="card-text">A succulent plant with thick, fleshy leaves. Easy to care for, needs bright light.</p>
+            <a href="#" class="btn btn-success">View Details</a>
           </div>
         </div>
       </div>
+      <!-- Plant Card 3 -->
       <div class="col-md-4">
         <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+          <img src="https://via.placeholder.com/200" class="card-img-top" alt="Plant 3">
           <div class="card-body">
-            <h5 class="card-title">Card 3</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <!-- Go somewhere button that opens a new page -->
-            <a href="https://www.example.com" class="btn btn-primary" target="_blank">Go somewhere</a>
+            <h5 class="card-title">Cactus</h5>
+            <p class="card-text">A desert plant that requires minimal water. Thrives in hot, dry conditions.</p>
+            <a href="#" class="btn btn-success">View Details</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Add Plant Section -->
+  <section id="add-plant" class="container mt-5">
+    <h2 class="text-center">Add a New Plant</h2>
+    <form>
+      <div class="mb-3">
+        <label for="plantName" class="form-label">Plant Name</label>
+        <input type="text" class="form-control" id="plantName" placeholder="Enter plant name">
+      </div>
+      <div class="mb-3">
+        <label for="plantDescription" class="form-label">Description</label>
+        <textarea class="form-control" id="plantDescription" rows="3" placeholder="Enter plant description"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="plantImage" class="form-label">Image URL</label>
+        <input type="url" class="form-control" id="plantImage" placeholder="Enter image URL">
+      </div>
+      <button type="submit" class="btn btn-success">Add Plant</button>
+    </form>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="container mt-5">
+    <h2 class="text-center">About the System</h2>
+    <p>The Plant Management System is a tool designed to help plant enthusiasts and gardeners keep track of their plants' information, growth status, and care requirements. With this system, you can easily add, view, and manage your plant collection.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    <p>&copy; 2025 Plant Management System | All Rights Reserved</p>
+  </footer>
 
   <!-- Link to Bootstrap JS (for features like dropdowns, modals, etc.) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

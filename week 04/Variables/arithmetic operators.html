@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arithmetic Operators</title>
+</head>
+<body>
+    <h1>Arithmetic Operators in JavaScript</h1>
+
+    <p id="sum"></p>
+    <p id="difference"></p>
+    <p id="product"></p>
+    <p id="quotient"></p>
+    <p id="remainder"></p>
+    <p id="power"></p>
+    <p id="incremented"></p>
+    <p id="decremented"></p>
+
+    <script>
+        // Declare variables
+        let a = 10;
+        let b = 5;
+        let c = 3;
+
+        // Addition
+        let sum = a + b;  // 10 + 5 = 15
+        document.getElementById("sum").textContent = "Sum: " + sum;
+
+        // Subtraction
+        let difference = a - c;  // 10 - 3 = 7
+        document.getElementById("difference").textContent = "Difference: " + difference;
+
+        // Multiplication
+        let product = a * b;  // 10 * 5 = 50
+        document.getElementById("product").textContent = "Product: " + product;
+
+        // Division
+        let quotient = a / b;  // 10 / 5 = 2
+        document.getElementById("quotient").textContent = "Quotient: " + quotient;
+
+        // Modulus (Remainder)
+        let remainder = a % c;  // 10 % 3 = 1
+        document.getElementById("remainder").textContent = "Remainder: " + remainder;
+
+        // Exponentiation
+        let power = b ** c;  // 5 ** 3 = 125
+        document.getElementById("power").textContent = "Power: " + power;
+
+        // Increment
+        let increment = a;
+        increment++;  // a = 10, now increment is 11
+        document.getElementById("incremented").textContent = "Incremented value of a: " + increment;
+
+        // Decrement
+        let decrement = b;
+        decrement--;  // b = 5, now decrement is 4
+        document.getElementById("decremented").textContent = "Decremented value of b: " + decrement;
+    </script>
+
+</body>
+</html>
