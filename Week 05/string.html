@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript String Operations</title>
+</head>
+<body>
+    <h1>JavaScript String Operations</h1>
+
+    <p id="output"></p> <!-- This is where we'll display the output -->
+
+    <script>
+        // String creation
+        let str1 = "Hello, world!";
+        let str2 = 'JavaScript is fun!';
+        let str3 = `Welcome to JavaScript tutorials.`;
+
+        // String length
+        let str1Length = str1.length;
+
+        // String concatenation
+        let concatenatedString = str1 + " " + str2;
+
+        // Changing case
+        let lowerCaseStr = str1.toLowerCase();
+        let upperCaseStr = str2.toUpperCase();
+
+        // Template literals
+        let user = "John";
+        let greeting = `Hello, ${user}! How are you today?`;
+
+        // String methods (substring, replace, and trim)
+        let substring = str3.substring(0, 11); // 'Welcome to'
+        let replacedString = str2.replace('fun', 'awesome');
+        let trimmedString = "    extra spaces    ".trim();
+
+        // Display the output on the page
+        document.getElementById("output").innerHTML = `
+            <strong>Original String 1:</strong> ${str1} <br>
+            <strong>String Length of '${str1}':</strong> ${str1Length} <br><br>
+            
+            <strong>Concatenated String:</strong> ${concatenatedString} <br><br>
+            
+            <strong>Lowercase String:</strong> ${lowerCaseStr} <br>
+            <strong>Uppercase String:</strong> ${upperCaseStr} <br><br>
+            
+            <strong>Greeting using Template Literal:</strong> ${greeting} <br><br>
+            
+            <strong>Substring (First 11 characters):</strong> ${substring} <br>
+            <strong>Replaced String:</strong> ${replacedString} <br>
+            <strong>Trimmed String:</strong> '${trimmedString}' <br>
+        `;
+    </script>
+</body>
+</html>
