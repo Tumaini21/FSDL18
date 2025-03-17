@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Data Management System</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd; /* Light blue background */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4caf50;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-container, .table-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-container h3, .table-container h3 {
+            color: #4caf50;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"] {
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        td button {
+            margin: 5px;
+            background-color: #f44336;
+        }
+
+        td button:hover {
+            background-color: #d32f2f;
+        }
+
+        .plant-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4caf50;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body ng-app="plantApp">
+
+    <div class="container" ng-controller="PlantController">
+        <h1>Plant Data Management System</h1>
+
+        <!-- Add Plant Form -->
+        <div class="form-container">
+            <h3>Add a New Plant</h3>
+            <form ng-submit="addPlant()">
+                <label>Name:</label>
+                <input type="text" ng-model="newPlant.name" required><br>
+
+                <label>Type:</label>
+                <input type="text" ng-model="newPlant.type" required><br>
+
+                <label>Watering Frequency (days):</label>
+                <input type="number" ng-model="newPlant.waterFrequency" required><br>
+
+                <label>Last Watered Date:</label>
+                <input type="date" ng-model="newPlant.lastWatered" required><br>
+
+                <button type="submit">Add Plant</button>
+            </form>
+        </div>
+
+        <!-- Display List of Plants -->
+        <div class="table-container">
+            <h3>Plant List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Watering Frequency (days)</th>
+                        <th>Last Watered Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="plant in plants">
+                        <td><img class="plant-image" src="https://via.placeholder.com/100?text=Plant+Image" alt="Plant Image"></td>
+                        <td>{{ plant.name }}</td>
+                        <td>{{ plant.type }}</td>
+                        <td>{{ plant.waterFrequency }}</td>
+                        <td>{{ plant.lastWatered }}</td>
+                        <td>
+                            <button ng-click="deletePlant($index)">Delete</button>
+                            <button ng-click="editPlant(plant, $index)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Edit Plant Modal (Optional) -->
+        <div ng-if="isEditing">
+            <h3>Edit Plant</h3>
+            <form ng-submit="updatePlant()">
+                <label>Name:</label>
+                <input type="text" ng-model="currentPlant.name" required><br>
+
+                <label>Type:</label>
+                <input type="text" ng-model="currentPlant.type" required><br>
+
+                <label>Watering Frequency (days):</label>
+                <input type="number" ng-model="currentPlant.waterFrequency" required><br>
+
+                <label>Last Watered Date:</label>
+                <input type="date" ng-model="currentPlant.lastWatered" required><br>
+
+                <button type="submit">Update Plant</button>
+                <button type="button" ng-click="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Plant Data Management System. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        var app = angular.module("plantApp", []);
+
+        app.controller("PlantController", function($scope) {
+            $scope.plants = [];
+
+            $scope.newPlant = {};
+
+            $scope.isEditing = false;
+            $scope.currentPlant = {};
+            $scope.currentIndex = -1;
+
+            $scope.addPlant = function() {
+                $scope.plants.push({
+                    name: $scope.newPlant.name,
+                    type: $scope.newPlant.type,
+                    waterFrequency: $scope.newPlant.waterFrequency,
+                    lastWatered: $scope.newPlant.lastWatered
+                });
+                $scope.newPlant = {}; // Reset form
+            };
+
+            $scope.deletePlant = function(index) {
+                $scope.plants.splice(index, 1);
+            };
+
+            $scope.editPlant = function(plant, index) {
+                $scope.isEditing = true;
+                $scope.currentPlant = angular.copy(plant);
+                $scope.currentIndex = index;
+            };
+
+            $scope.updatePlant = function() {
+                $scope.plants[$scope.currentIndex] = angular.copy($scope.currentPlant);
+                $scope.cancelEdit();
+            };
+
+            $scope.cancelEdit = function() {
+                $scope.isEditing = false;
+                $scope.currentPlant = {};
+            };
+        });
+    </script>
+
+</body>
+</html>

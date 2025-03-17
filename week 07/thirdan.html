@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Pet Game</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f3f4f6;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #4caf50;
+            font-size: 2.5em;
+        }
+
+        .pet-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .pet-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 1.2em;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #888;
+        }
+
+        .game-over {
+            color: red;
+        }
+    </style>
+</head>
+<body ng-app="virtualPetApp" ng-controller="PetController">
+    <h1>Virtual Pet Game</h1>
+
+    <div class="pet-container">
+        <img class="pet-image" ng-src="{{pet.image}}" alt="Pet">
+        <div class="status">
+            <p>Health: {{pet.health}}%</p>
+            <p>Happiness: {{pet.happiness}}%</p>
+            <p>Age: {{pet.age}} years</p>
+        </div>
+
+        <div ng-show="!gameOver">
+            <button class="button" ng-click="feedPet()">Feed Pet</button>
+            <button class="button" ng-click="playPet()">Play with Pet</button>
+            <button class="button" ng-click="cleanPet()">Clean Pet</button>
+        </div>
+
+        <div ng-show="gameOver" class="game-over">
+            <p>Game Over! Your pet is no longer alive. Please refresh to try again.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Virtual Pet Game</p>
+    </div>
+
+    <script>
+        // AngularJS application
+        var app = angular.module("virtualPetApp", []);
+
+        app.controller("PetController", function($scope, $interval) {
+            // Initialize pet data
+            $scope.pet = {
+                name: "Fluffy",
+                image: "https://via.placeholder.com/150/4caf50/ffffff?text=Pet", // Placeholder image
+                health: 100,
+                happiness: 100,
+                age: 0
+            };
+
+            $scope.gameOver = false;
+
+            // Function to feed the pet
+            $scope.feedPet = function() {
+                if (!$scope.gameOver) {
+                    $scope.pet.health = Math.min(100, $scope.pet.health + 10);
+                    $scope.pet.happiness = Math.min(100, $scope.pet.happiness + 5);
+                    $scope.agePet();
+                }
+            };
+
+            // Function to play with the pet
+            $scope.playPet = function() {
+                if (!$scope.gameOver) {
+                    $scope.pet.happiness = Math.min(100, $scope.pet.happiness + 15);
+                    $scope.pet.health = Math.max(0, $scope.pet.health - 5);
+                    $scope.agePet();
+                }
+            };
+
+            // Function to clean the pet
+            $scope.cleanPet = function() {
+                if (!$scope.gameOver) {
+                    $scope.pet.happiness = Math.min(100, $scope.pet.happiness + 10);
+                    $scope.pet.health = Math.min(100, $scope.pet.health + 5);
+                    $scope.agePet();
+                }
+            };
+
+            // Function to increase age over time
+            $scope.agePet = function() {
+                $scope.pet.age += 0.01; // Increase age gradually over time
+                $scope.checkPetStatus();
+            };
+
+            // Function to check pet's status
+            $scope.checkPetStatus = function() {
+                if ($scope.pet.health <= 0 || $scope.pet.happiness <= 0) {
+                    $scope.gameOver = true; // End the game if health or happiness is zero
+                }
+            };
+
+            // Automatically age the pet every second and check status
+            $interval(function() {
+                if (!$scope.gameOver) {
+                    $scope.agePet();
+                }
+            }, 1000); // Call every 1 second
+        });
+    </script>
+</body>
+</html>

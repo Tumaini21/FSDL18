@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Hello World</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="HelloController">
+        <h1>Hello, {{name}}!</h1>
+        <label>Enter your name: </label>
+        <input type="text" ng-model="name">
+
+        <h2>My age is {{Age}}! </h2>
+        <label>Enter your age:</label>
+        <input type="number" ng-model="Age">
+
+        <h3>enter email</h3>
+        <label>enter your email:</label>
+        <input type="email" ng-model="email">
+        <br>
+        <br>
+
+
+        <label>Upload Plant Photo:</label>
+        <input type="file" ng-model="newPlant.photo" accept="image/*" file-model>
+    
+
+        <p>Your name in uppercase: <strong>{{ name | uppercase }}</strong></p>
+        <p>Your email: {{ email }}</p>
+        <p>your age is:{{ Age}} </p>
+
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        
+        app.controller("HelloController", function($scope) {
+            $scope.name = ""; // Default value
+        });
+    </script>
+
+</body>
+</html>
